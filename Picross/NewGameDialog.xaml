@@ -1,0 +1,43 @@
+﻿<Window x:Class="Picross.NewGameDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Picross"
+        xmlns:p="clr-namespace:Picross.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.NewGame}"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight">
+    <Grid Margin="5,5,10,5">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="35" />
+            <ColumnDefinition Width="120" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Margin="0,0,0,5" VerticalAlignment="Center" Content="{x:Static p:Resources.Difficulty}" />
+        <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0,0,0" VerticalAlignment="Center" SelectedIndex="{Binding Settings.Difficulty}">
+            <ComboBoxItem Content="{x:Static p:Resources.DifficultyEasy}" />
+            <ComboBoxItem Content="{x:Static p:Resources.DifficultyNormal}" />
+            <ComboBoxItem Content="{x:Static p:Resources.DifficultyHard}" />
+            <ComboBoxItem Content="{x:Static p:Resources.DifficultyExtreme}" />
+        </ComboBox>
+        <Label Grid.Row="1" Grid.Column="0" Margin="0,0,0,5" VerticalContentAlignment="Center" Content="{x:Static p:Resources.Rows}" />
+        <Label Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="{Binding Settings.Rows}" />
+        <Slider Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Minimum="4" Maximum="16" Value="{Binding Settings.Rows}" />
+        <Label Grid.Row="2" Grid.Column="0" Margin="0,0,0,5" VerticalContentAlignment="Center" Content="{x:Static p:Resources.Columns}" />
+        <Label Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="{Binding Settings.Columns}" />
+        <Slider Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Minimum="4" Maximum="16" Value="{Binding Settings.Columns}" />
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,10,0,5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button Width="80" Height="25" Margin="0,0,10,0" Content="{x:Static p:Resources.Ok}" IsDefault="True" Command="{Binding NewGameCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+            <Button Width="80" Height="25" Content="{x:Static p:Resources.Cancel}" IsCancel="True" />
+        </StackPanel>
+    </Grid>
+</Window>
